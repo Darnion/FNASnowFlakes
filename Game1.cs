@@ -16,7 +16,6 @@ namespace FNASnowFlakes
         SpriteBatch spriteBatch;
 
         public List<GameObject> objects = new List<GameObject>();
-        private bool lever = false;
 
         public Game1() //This is the constructor, this function is called whenever the game class is created.
         {
@@ -109,21 +108,6 @@ namespace FNASnowFlakes
             for (var i = 0; i < objects.Count; i++)
             {
                 objects[i].Update(objects);
-                CheckInput();
-                if (lever)
-                {
-                    foreach (GameObject flake in objects)
-                    {
-                        if (flake.GetType() == (new SnowFlake().GetType()))
-                        {
-                            flake.position.Y += flake.scale / 5;
-                            if (flake.position.Y > 900)
-                            {
-                                flake.position.Y = -flake.scale * 500;
-                            }
-                        }
-                    }
-                }
             }
         }
 
@@ -132,14 +116,6 @@ namespace FNASnowFlakes
             for (var i = 0; i < objects.Count; i++)
             {
                 objects[i].Draw(spriteBatch);
-            }
-        }
-
-        private void CheckInput()
-        {
-            if (Input.MouseLeftClicked())
-            {
-                lever = !lever;
             }
         }
     }

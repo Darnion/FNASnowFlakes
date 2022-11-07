@@ -15,6 +15,7 @@ namespace FNASnowFlakes
 {
     public class SnowFlake : GameObject
     {
+        private bool lever = false;
         public SnowFlake()
         {
 
@@ -36,7 +37,24 @@ namespace FNASnowFlakes
 
         public override void Update(List<GameObject> objects)
         {
+            CheckInput();
+            if (lever)
+            {
+                position.Y += scale * 100;
+                if (position.Y > 900)
+                {
+                    position.Y = -scale * image.Height;
+                }
+            }
             base.Update(objects);
+        }
+
+        private void CheckInput()
+        {
+            if (Input.MouseLeftClicked())
+            {
+                lever = !lever;
+            }
         }
     }
 }
